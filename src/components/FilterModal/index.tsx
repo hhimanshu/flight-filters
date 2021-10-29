@@ -11,7 +11,7 @@ import {
   ModalOverlay,
   Text
 } from "@chakra-ui/react";
-import React, { RefObject } from "react";
+import React, {ForwardedRef, MutableRefObject, RefObject} from "react";
 import { IconButton } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { GenderFilterOptions } from "./GenderFilterOptions";
@@ -21,8 +21,8 @@ import { NutrientFilterOptions } from "./NutrientFilterOptions";
 interface FilterModalProps {
   isOpen: boolean;
   onClose: () => void;
-  nutrientRef: RefObject<HTMLDivElement>;
-  focusRef: RefObject<HTMLDivElement> | undefined;
+  nutrientRef: React.MutableRefObject<HTMLDivElement | undefined>;
+  focusRef: React.MutableRefObject<HTMLDivElement | undefined>;
 }
 export const FilterModal = ({
   isOpen,

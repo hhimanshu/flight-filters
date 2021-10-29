@@ -7,15 +7,16 @@ import {
   Stack,
   Text
 } from "@chakra-ui/react";
-import React, { RefObject } from "react";
+import React, {MutableRefObject, RefObject} from "react";
 import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 import { CgSearch } from "react-icons/cg";
 
 interface NutrientFilterOptionsProps {
-  ref: RefObject<HTMLDivElement>;
+  ref: React.MutableRefObject<HTMLDivElement | undefined>;
 }
 export const NutrientFilterOptions = ({ ref }: NutrientFilterOptionsProps) => {
   return (
+      <div>
     <Box ref={ref}>
       <Text fontSize="lg" fontWeight="bold">
         Nutrients
@@ -48,5 +49,6 @@ export const NutrientFilterOptions = ({ ref }: NutrientFilterOptionsProps) => {
         </CheckboxGroup>
       </Box>
     </Box>
+      </div>
   );
 };
