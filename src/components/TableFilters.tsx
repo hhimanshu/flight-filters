@@ -1,21 +1,19 @@
-import React, {MutableRefObject, RefObject, useState} from "react";
+import React, {useState} from "react";
 import {Flex} from "@chakra-ui/react";
 import {TotalFilter} from "./TotalFilter";
 import {GenderFilter} from "./GenderFilter";
 import {AgeFilter} from "./AgeFilter";
 import {NutrientFilter} from "./NutrientFilter";
 import {FilterModal} from "./FilterModal";
-import {useDisclosure} from "@chakra-ui/react";
 
 export const TableFilters = () => {
-    const {isOpen, onOpen, onClose} = useDisclosure();
-    const [focusRef, setFocusRef] = useState<React.MutableRefObject<HTMLDivElement | undefined>>();
-    const nutrientRef: React.MutableRefObject<HTMLDivElement | undefined> = React.useRef<HTMLDivElement>()
+    const [focusRef, setFocusRef] = useState<React.RefObject<HTMLDivElement> | null>();
+    const nutrientRef = React.useRef<HTMLDivElement>(null)
 
-    const handleClick = (ref: React.MutableRefObject<HTMLDivElement | undefined>) => {
+    const handleClick = (ref: React.RefObject<HTMLDivElement>) => {
         setFocusRef(ref);
-        onOpen();
     };
+    const onOpen = () => {}
     return (
         <>
             <Flex gridGap={4} bg={"white"} py={4} px={4} grow={1}>
@@ -33,10 +31,10 @@ export const TableFilters = () => {
                 />
             </Flex>
             <FilterModal
-                isOpen={isOpen}
-                onClose={onClose}
+                isOpen={focusRef !== null}
+                onClose={() => setFocusRef(null)}
                 nutrientRef={nutrientRef}
-                focusRef={nutrientRef}
+                ref={nutrientRef}
             />
         </>
     );
