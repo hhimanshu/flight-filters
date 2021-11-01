@@ -57,9 +57,13 @@ export const FilterModal = forwardRef((props: FilterModalProps, ref: ForwardedRe
                 </ModalHeader>
                 <ModalBody>
                     <Box>
-                        <GenderFilterOptions/>
+                        <Box ref={props.genderRef} tabIndex={-1}>
+                            <GenderFilterOptions/>
+                        </Box>
                         <Divider my={4}/>
-                        <AgeFilterOptions/>
+                        <Box ref={props.ageRef} tabIndex={-1}>
+                            <AgeFilterOptions/>
+                        </Box>
                         <Divider my={4}/>
                         <Box ref={props.nutrientRef} tabIndex={-1}>
                             <NutrientFilterOptions/>
