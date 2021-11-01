@@ -8,16 +8,15 @@ import {FilterModal} from "./FilterModal";
 import {FocusableElement} from "@chakra-ui/utils"
 
 export const TableFilters = () => {
-    //const focusRef = React.useRef<HTMLDivElement>(null);
     const totalFiltersRef = React.useRef<HTMLDivElement>(null);
     const genderRef = React.useRef<HTMLDivElement>(null);
     const ageRef = React.useRef<HTMLDivElement>(null);
     const nutrientsRef = React.useRef<HTMLDivElement>(null);
-    const [focusRef, setFocusRef] = useState<RefObject<HTMLDivElement | FocusableElement> | null>(
+    const [focusRef, setFocusRef] = useState<RefObject<HTMLDivElement | FocusableElement> | undefined>(
         nutrientsRef
     );
 
-    const handleClick = (ref: RefObject<HTMLDivElement | FocusableElement>) => setFocusRef(ref);
+    const handleClick = (ref: RefObject<HTMLDivElement>) => setFocusRef(ref);
 
     return (
         <>
@@ -36,13 +35,13 @@ export const TableFilters = () => {
                 />
             </Flex>
             <FilterModal
-                isOpen={focusRef !== null}
-                onClose={() => setFocusRef(null)}
+                isOpen={focusRef !== undefined}
+                onClose={() => setFocusRef(undefined)}
                 totalFiltersRef={totalFiltersRef}
                 genderRef={genderRef}
                 ageRef={ageRef}
                 nutrientRef={nutrientsRef}
-                ref={focusRef}
+                focusRef={focusRef}
             />
         </>
     );
